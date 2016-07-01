@@ -1,0 +1,16 @@
+<% include header.ejs %>
+<% include nav.ejs %>
+<div id="container" class="container" ng-app="app">
+	<div ng-controller="book">
+		<ul ng-repeat="book in viewdata track by $index" ng-cloak="">
+			<li ng-bind="book.name"></li>
+		</ul>
+	</div>
+</div>
+<script type="text/javascript">
+	var app = angular.module('app',[]);
+	app.controller('book',['$scope',function($scope){
+		$scope.viewdata = <%- JSON.stringify(items) %>; 
+		console.log($scope.viewdata);
+	}]);
+</script>

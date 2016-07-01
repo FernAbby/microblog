@@ -1,0 +1,44 @@
+<% include header.ejs %>
+<% include nav.ejs %>
+<div id="container" class="container">
+	<% if (success) { %>
+	<div class="alert alert-success">
+		<%= success[0].message %>
+	</div>
+	<% } %>
+	<% if (error) { %>
+	<div class="alert alert-error">
+		<%= error[0].message %>
+	</div>
+	<% } %>
+	<div class="hero-unit">
+		<h1>欢迎来到Microblog</h1>
+		<p>Microblog 是一个基于Node.js的微博系统</p> 
+		<p>
+			<a class="btn btn-primary btn-large" href="/login">登录</a>
+			<a class="btn btn-large" href="/reg">立即注册</a>
+		</p>
+	</div>
+	<div class="row">
+		<div class="span4">
+			<h2>Carbo 说</h2>
+			<p>
+				百度翻译提供即时免费的多语种文本翻译和网页翻译服务，支持中、英、日、韩、泰、法、西、德等27种热门语言互译，覆盖702个翻译方向。
+				Google 的免费翻译服务可提供简体中文和另外 100 多种语言之间的互译功能，可让您即时翻译字词、短语和网页内容。 中文（简体）， 阿尔巴尼亚语， 阿拉伯语， 阿姆哈拉语， 阿塞拜疆语， 爱尔兰语， 爱沙尼亚语， 巴斯克语， 白俄罗斯语， 保加利亚语， 冰岛语， ...
+			</p> 
+		</div>
+		<div class="span4">
+			<h2>小马 说</h2>
+			<p>
+				中国官员指出，中国的城市化进程较西方在产业转型中发展的快得多。中国只用了30年的时间从20%攀升到54%。相同的历程，英国花了100年，美国花了60年。然而，在更近的时间里，中国城市人口增长已经相比韩国和印度尼西亚的经济快速增长时期放缓，主要由于中国对流动人口的歧视性政策和对农村土地买卖的垄断。
+			</p>
+		</div>
+		<div class="span4">
+			<h2>抖森 说</h2>
+			<p>
+				Chinese officials note that the speed of urbanisation in China has been far faster than in Western countries during their industrial transformations. It took China only 30 years to climb from 20% urbanisation to today’s 54%. In Britain the equivalent journey took 100 years and in America 60. However, in more recent times population growth in urban China has been slower than in countries such as South Korea and Indonesia during their period of rapid economic development, mainly because of China’s discriminatory policies against migrants and its state monopoly on rural-land sales.
+			</p>
+		</div>
+	</div>
+</div>
+<% include footer.ejs %>

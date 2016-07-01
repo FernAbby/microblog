@@ -1,0 +1,64 @@
+<% include header.ejs %>
+<% include nav.ejs %>
+<div id="container" class="container">
+    <div id="state"></div>
+    <input type="button" onclick="HeadRequest('Content-Type')" value="Content-type"><br><br>
+    <input type="button" onclick="HeadRequest('Date')" value="Date"><br><br>
+    <input type="button" onclick="HeadRequest('Connection')" value="Connection"><br><br>
+    <input type="button" onclick="HeadRequest('All')" value="All headers"><br>
+</div>
+<script type="text/javascript">
+    var xmlHttp = false;
+    var headType = '';
+    function createXMLRequest() {
+        if (window.ActiveXObject) {
+            try {
+                xmlHttp = new ActiveXObject('Msxml2.XMLHTTP');
+            } catch (err) {
+                try {
+                    xmlHttp = new ActiveXObject('Microsoft.XMLHTTP');
+                } catch (err) {
+                    xmlHttp = false;
+                }
+            }
+        } else if (window.XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+        }
+        if (!xmlHttp) {
+            console.log('创建XMLRequest失败!');
+        }
+    }
+    function HeadRequest(request) {
+        createXMLRequest();
+        headType = request;
+        xmlHttp.onreadystatechange = callback;
+        xmlHttp.open('POST', '/test', true);
+        xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xmlHttp.send({
+            name: 'wenzhen',
+            password: '123456'
+        });
+    }
+    function success(data) {
+
+    }
+    function error(data) {
+
+    }
+    function callback() {
+        if (xmlHttp.readyState == 4) {
+            getHeadInfo();
+            if (xmlHttp.response) {
+                console.log(xmlHttp.response);
+                console.log(JSON.parse(xmlHttp.response));
+            }
+        }
+    }
+    function getHeadInfo() {
+        if (headType == 'All') {
+            state.innerHTML = xmlHttp.getAllResponseHeaders();
+        } else {
+            state.innerHTML = headType + " : " + xmlHttp.getResponseHeader(headType);
+        }
+    }
+</script>
