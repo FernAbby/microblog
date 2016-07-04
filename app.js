@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var mongoStore = require('connect-mongodb');
 var session = require('express-session');
 var flash = require('connect-flash');
+//var connectRedis = require('connect-redis');
 // var sessionStore = session.Memory({reapInterval: 300*1000})
 
 // var setting = ('./settings');
@@ -29,6 +30,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(flash());
+//app.use(connectRedis());
 // app.use(express.session({
 //   secret: settings.cookieSecret, 
 //   store: new mongoStore({

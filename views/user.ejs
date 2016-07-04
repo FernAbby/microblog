@@ -3,15 +3,42 @@
 <head>
     <title><%= title %></title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-    <link rel="stylesheet" href="/stylesheets/bootstrap-responsive.css" >
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+    <link rel="stylesheet" href="/stylesheets/bootstrap-responsive.css">
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
     <script src="/javascripts/jquery-2.1.4.min.js"></script>
     <script src="/javascripts/angular.min.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
 </head>
-<body>
-<h1><%= title %></h1>
-<p>hello <%= username%></p>
-<p>Welcome to <%= title %></p>
+<body ng-app="posts">
+<% include nav.ejs %>
+<div id="container" class="container" ng-controller="postController">
+    <h1><%= title %></h1>
+    <p>hello <%= user.name %></p>
+    <p>Welcome to <%= title %></p>
+    <form ng-show="user" method="post" action="/post" class="well form-inline center" style="text-align:center;">
+        <input type="text" class="span8" name="post"/>
+        <button type="submit" class="btn btn-success">
+            <i class="icon-comment icon-white"></i>发言
+        </button>
+    </form>
+    <div ng-repeat="post in posts track by $index">
+        <div>
+            <h2><a ng-href="'/user/'+post.user" ng-bind="post.user"></a></h2>
+            <p>
+                <small ng-bind="post.time"></small>
+            </p>
+            <p ng-bind="post.post"></p>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var app = angular.module('posts', []);
+    app.controller('postController', ['$scope', function ($scope) {
+        $scope.user = <%- JSON.stringify(user) %>;
+        $scope.posts = <%- JSON.stringify(posts) %>
+    }]);
+</script>
 <% include footer.ejs %>
+</body>
+</html>
