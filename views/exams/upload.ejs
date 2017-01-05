@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script src="/javascripts/jquery-2.1.4.min.js"></script>
+    <style>
+        .albums {
+            width: 600px;
+        }
+
+        ul li {
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <input value="上传" type="file">
+    <div class="albums"></div>
+<script type="text/javascript">
+    $('input[type=file]').change(function(e){
+        var data = new FormData();
+        $.each($(this)[0].files,function(i,file){
+            data.append('upload_file'+i,file);
+        });
+        $.ajax({
+            url: '/exams/upload',
+            type: 'POST',
+            data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data){
+                console.log(data);
+            },
+            error: function(data){
+                console.log(data);
+            }
+        });
+    });
+</script>
+</body>
+</html>
