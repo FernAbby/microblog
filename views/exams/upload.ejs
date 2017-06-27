@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-    <input value="上传" type="file">
+    <input value="上传" multiple="multiple" type="file">
     <div class="albums"></div>
 <script type="text/javascript">
     $('input[type=file]').change(function(e){
@@ -31,7 +31,12 @@
             contentType: false,
             processData: false,
             success: function(data){
-                console.log(data);
+                var html = '';
+                for(var key in data){
+                    html += '<img src="'+data[key].path+'" alt=""/>';
+                }
+                document.append(html);
+                console.log(Object.keys(data).length);
             },
             error: function(data){
                 console.log(data);

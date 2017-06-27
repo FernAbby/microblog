@@ -20,6 +20,6 @@ router.get('/exams/upload', function(req, res, next) {
 router.post('/exams/upload', multipartMiddleware, function(req,res){
     console.log(req.files);
     console.log(req.body);
-    res.send(req.body);
+    res.send(req.files);
 });
 module.exports = router;
